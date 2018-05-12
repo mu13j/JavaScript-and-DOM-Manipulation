@@ -15,23 +15,22 @@ var $rightBtn = document.querySelector('#right');
 var filteredAddresses = dataSet;
 
 // Set Results Per Page
-var resultsPerPage = 800;
+var resultsPerPage = 1200;
 
 // Column Headers
 var fields = Object.keys(filteredAddresses[0]);
 
 // Creating Pagination Buttons
-for (var i =1; i<Math.ceil(filteredAddresses.length/resultsPerPage)+1; i++) {
-  var $number = d3.select('#blank')
-  $number.append('a').text(i).attr('href','#').attr('id',i).attr('onclick','ButtonClick(this.id)').attr('class','buttons')
+for (var i =2; i<Math.ceil(filteredAddresses.length/resultsPerPage)+1; i++) {
+  var $number = d3.select('.btn-group')
+  var $label = $number.append('label').attr('id',i).attr('class','btn btn-primary').text('page '+i).attr('onclick','ButtonClick(this.id)')
+  var $button = $label.append('input').attr('type','radio').attr('name','options').attr('autocomplete','off')
 }
-
 
 // Add an event listener to the searchButton, call handleSearchButtonClick when clicked
 $searchBtn.addEventListener("click", handleSearchButtonClick);
 $resetBtn.addEventListener("click", handleResetButtonClick);
-$leftBtn.addEventListener("click", handleLeftButtonClick);
-$rightBtn.addEventListener("click", handleRightButtonClick);
+
 
 // Last page
 var lastPage = Math.ceil(filteredAddresses.length/resultsPerPage)-1
@@ -41,21 +40,6 @@ var $currentPage=0
 function ButtonClick(number){
   $currentPage = number-1;
   renderTable()
-}
-
-// Left/Right Button Functionality
-function handleLeftButtonClick(){
-  if ($currentPage>0) {
-    $currentPage --
-    renderTable();
-  }
-}
-
-function handleRightButtonClick(){
-  if ($currentPage<lastPage) {
-    $currentPage ++
-    renderTable();
-  }
 }
 
 // Printing out 1500 results
