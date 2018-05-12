@@ -53,12 +53,13 @@ p{
 }
 
 .btn-group{
-    margin-left: 30px
+    margin-left: 30px;
 }
 
 .table-responsive{
     background-color:lightgray;
-    padding: 35px 
+    padding: 35px;
+    margin-top: 20px;
   }
   
 
